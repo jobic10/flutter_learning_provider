@@ -31,6 +31,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("I am rebuilding");
     final counter = Provider.of<Counter>(context);
     return Scaffold(
       appBar: AppBar(
