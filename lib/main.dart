@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_provider/screens/radial.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -34,6 +36,17 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => RadialProgress(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.battery_std_sharp))
+        ],
       ),
       body: Center(
         child: Column(
