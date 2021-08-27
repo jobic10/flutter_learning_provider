@@ -11,12 +11,22 @@ class RadialProgress extends StatefulWidget {
 class _RadialProgressState extends State<RadialProgress> {
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      child: Container(
-        height: 200,
-        width: 200,
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: CustomPaint(
+              child: Container(
+                height: 200,
+                width: 200,
+              ),
+              painter: RadialPainter(),
+            ),
+          ),
+        ],
       ),
-      painter: RadialPainter(),
     );
   }
 }
