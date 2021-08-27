@@ -32,6 +32,12 @@ class _RadialProgressState extends State<RadialProgress>
   }
 
   @override
+  void dispose() {
+    _radialAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
