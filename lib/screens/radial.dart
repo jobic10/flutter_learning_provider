@@ -44,7 +44,6 @@ class RadialPainter extends CustomPainter {
     canvas.drawCircle(center, size.width / 2, paint);
 
     var progressPaint = Paint()
-      ..color = Colors.blue
       ..shader = LinearGradient(
               colors: [Colors.red, Colors.purple, Colors.purpleAccent])
           .createShader(Rect.fromCenter(
