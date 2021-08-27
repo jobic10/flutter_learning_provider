@@ -23,7 +23,7 @@ class _RadialProgressState extends State<RadialProgress> {
                 height: 200,
                 width: 200,
               ),
-              painter: RadialPainter(),
+              painter: RadialPainter(progressInDegress: 290),
             ),
           ),
         ],
@@ -33,6 +33,10 @@ class _RadialProgressState extends State<RadialProgress> {
 }
 
 class RadialPainter extends CustomPainter {
+  final double progressInDegress;
+
+  RadialPainter({required this.progressInDegress})
+      : assert(progressInDegress >= 0);
   @override
   void paint(Canvas canvas, Size size) {
     var center = Offset(size.width / 2, size.height / 2);
@@ -54,7 +58,7 @@ class RadialPainter extends CustomPainter {
     canvas.drawArc(
         Rect.fromCenter(center: center, width: size.width, height: size.height),
         math.radians(-90),
-        math.radians(250),
+        math.radians(progressInDegress),
         false,
         progressPaint);
   }
