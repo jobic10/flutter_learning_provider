@@ -9,7 +9,28 @@ class RadialProgress extends StatefulWidget {
   _RadialProgressState createState() => _RadialProgressState();
 }
 
-class _RadialProgressState extends State<RadialProgress> {
+class _RadialProgressState extends State<RadialProgress>
+    with SingleTickerProviderStateMixin {
+  var _radialAnimationController;
+  var _progressAnimation;
+  double progressDegrees = 0;
+  void initState() {
+    super.initState();
+    _radialAnimationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _progressAnimation = Tween(begin: 0.0, end: 360.0).animate(
+      CurvedAnimation(
+        parent: _radialAnimationController,
+        curve: Curves.decelerate,
+      ),
+    )..addListener(() {
+        setState(() {
+          progressDegrees = widget.goalCompleted * _progressAnimation.value;
+        });
+      });
+    _radialAnimationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +44,7 @@ class _RadialProgressState extends State<RadialProgress> {
                 height: 200,
                 width: 200,
               ),
-              painter: RadialPainter(progressInDegress: 290),
+              painter: RadialPainter(progressInDegress: progressDegrees),
             ),
           ),
         ],
