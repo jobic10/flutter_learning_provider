@@ -62,8 +62,7 @@ class _RadialProgressState extends State<RadialProgress>
 class RadialPainter extends CustomPainter {
   final double progressInDegress;
 
-  RadialPainter({required this.progressInDegress})
-      : assert(progressInDegress >= 0);
+  RadialPainter({required this.progressInDegress});
   @override
   void paint(Canvas canvas, Size size) {
     var center = Offset(size.width / 2, size.height / 2);
