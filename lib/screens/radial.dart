@@ -74,19 +74,21 @@ class RadialPainter extends CustomPainter {
     canvas.drawCircle(center, size.width / 2, paint);
 
     var progressPaint = Paint()
-      ..shader = LinearGradient(
-              colors: [Colors.red, Colors.purple, Colors.purpleAccent])
-          .createShader(Rect.fromCenter(
-              center: center, width: size.width / 2, height: size.height / 2))
+      ..shader = LinearGradient(colors: [
+        Colors.red,
+        Colors.purple,
+      ]).createShader(Rect.fromCenter(
+          center: center, width: size.width / 2, height: size.height / 2))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 8;
     canvas.drawArc(
-        Rect.fromCenter(center: center, width: size.width, height: size.height),
-        math.radians(-90),
-        math.radians(progressInDegress),
-        false,
-        progressPaint);
+      Rect.fromCenter(center: center, width: size.width, height: size.height),
+      math.radians(-90),
+      math.radians(progressInDegress),
+      false,
+      progressPaint,
+    );
   }
 
   @override
