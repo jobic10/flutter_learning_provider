@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_provider/screens/radial.dart';
+import 'package:learning_provider/screens/slivers.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -38,14 +39,25 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => RadialProgress(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.battery_std_sharp))
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => RadialProgress(),
+                ),
+              );
+            },
+            icon: Icon(Icons.battery_std_sharp),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => SliverPage(),
+                ),
+              );
+            },
+            icon: Icon(Icons.access_alarm_rounded),
+          ),
         ],
       ),
       body: Center(
