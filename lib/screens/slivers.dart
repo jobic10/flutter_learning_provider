@@ -42,8 +42,18 @@ class SliverPage extends StatelessWidget {
                   child: Text('Grid Item : $index'),
                 );
               },
-              childCount: 100,
+              childCount: 20,
             ),
+          ),
+          SliverFillViewport(
+            viewportFraction: 0.1,
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return Container(
+                alignment: Alignment.center,
+                color: Colors.yellow[100 * (index % 9)],
+                child: Text('Fill View Item : $index'),
+              );
+            }, childCount: 10),
           ),
           // SliverList(delegate: delegate),
         ],
