@@ -55,6 +55,14 @@ class SliverPage extends StatelessWidget {
               );
             }, childCount: 10),
           ),
+          SliverFixedExtentList(
+              delegate: SliverChildListDelegate([
+                Container(color: Colors.green, child: Text('1')),
+                Container(color: Colors.brown, child: Text('2')),
+                Container(color: Colors.indigo, child: Text('3')),
+                Container(color: Colors.blue, child: Text('4')),
+              ]),
+              itemExtent: 20)
           // SliverList(delegate: delegate),
         ],
       ),
