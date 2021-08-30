@@ -10,11 +10,14 @@ class SliverPage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             pinned: true,
-            expandedHeight: 120,
+            floating: true,
+            expandedHeight: 320,
             title: Text('Outside flexible space'),
+            stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text('Hello Slivers'),
-              collapseMode: CollapseMode.pin,
+              collapseMode: CollapseMode.parallax,
+              background: Container(color: Colors.red),
             ),
             leading: Icon(Icons.home),
             actions: [
@@ -26,11 +29,10 @@ class SliverPage extends StatelessWidget {
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
+              maxCrossAxisExtent: 100,
               mainAxisExtent: 200,
-              childAspectRatio: 8,
-              crossAxisSpacing: 2,
-              mainAxisSpacing: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 20,
             ),
             delegate: SliverChildBuilderDelegate(
               (context, index) {
