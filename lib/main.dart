@@ -7,7 +7,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<MyModel>(
+    return ChangeNotifierProvider<MyModel>(
       create: (BuildContext context) => MyModel(),
       child: MaterialApp(
         home: Scaffold(
