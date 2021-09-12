@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Consumer<MyModel>(
-                builder: (BuildContext context, MyModel model, child) =>
-                    Container(
+                  builder: (BuildContext context, MyModel model, child) {
+                print("Button was rebuilt");
+                return Container(
                   padding: const EdgeInsets.all(20),
                   color: Colors.green[200],
                   child: ElevatedButton(
@@ -26,8 +27,8 @@ class MyApp extends StatelessWidget {
                       model.doSomething();
                     },
                   ),
-                ),
-              ),
+                );
+              }),
               Consumer<MyModel>(
                 builder: (BuildContext context, MyModel model, child) =>
                     Container(
