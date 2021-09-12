@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_provider/models/my_model.dart';
+import 'package:learning_provider/widgets/my_button.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -15,20 +16,7 @@ class MyApp extends StatelessWidget {
           body: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Consumer<MyModel>(
-                  builder: (BuildContext context, MyModel model, child) {
-                print("Button was rebuilt");
-                return Container(
-                  padding: const EdgeInsets.all(20),
-                  color: Colors.green[200],
-                  child: ElevatedButton(
-                    child: Text('Do something'),
-                    onPressed: () {
-                      model.doSomething();
-                    },
-                  ),
-                );
-              }),
+              MyButton(),
               Consumer<MyModel>(
                 builder: (BuildContext context, MyModel model, child) =>
                     Container(
