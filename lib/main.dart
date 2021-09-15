@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning_provider/models/my_model.dart';
-import 'package:learning_provider/widgets/my_button.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -8,21 +6,38 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<MyModel>(
-      create: (BuildContext context) => MyModel(),
+    return FutureProvider<MyModel>(
+      //                      <--- FutureProvider
+      initialData: MyModel(someValue: 'default value'),
+      create: (context) => someAsyncFunctionToGetMyModel(),
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(title: Text('My App')),
           body: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              MyButton(),
-              Consumer<MyModel>(
-                builder: (BuildContext context, MyModel model, child) =>
-                    Container(
-                  padding: const EdgeInsets.all(35),
-                  color: Colors.blue[200],
-                  child: Text(model.someValue),
+              Container(
+                  padding: const EdgeInsets.all(20),
+                  color: Colors.green[200],
+                  child: Consumer<MyModel>(
+                    //                    <--- Consumer
+                    builder: (context, myModel, child) {
+                      return ElevatedButton(
+                        child: Text('Do something'),
+                        onPressed: () {
+                          myModel.doSomething();
+                        },
+                      );
+                    },
+                  )),
+              Container(
+                padding: const EdgeInsets.all(35),
+                color: Colors.blue[200],
+                child: Consumer<MyModel>(
+                  //                    <--- Consumer
+                  builder: (context, myModel, child) {
+                    return Text(myModel.someValue);
+                  },
                 ),
               ),
             ],
@@ -30,5 +45,22 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<MyModel> someAsyncFunctionToGetMyModel() async {
+  //  <--- async function
+  await Future.delayed(Duration(seconds: 10));
+  return MyModel(someValue: 'new data');
+}
+
+class MyModel {
+  //                                               <--- MyModel
+  MyModel({required this.someValue});
+  String someValue = 'Hello';
+  Future<void> doSomething() async {
+    await Future.delayed(Duration(seconds: 2));
+    someValue = 'Goodbye';
+    print(someValue);
   }
 }
